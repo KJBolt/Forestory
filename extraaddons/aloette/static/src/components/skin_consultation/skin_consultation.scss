@@ -1,0 +1,34 @@
+.skin-consultation {
+    height: 90vh;
+    padding: 0px 10px;
+    overflow-y: scroll;
+
+    .card {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        height: 100%;
+    }
+
+    .card-header {
+        background-color: white;
+        position: sticky; // Make header stick to top while scrolling
+        top: 0;
+        z-index: 1;
+    }
+
+    .form-check {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+
+    .btn-success {
+        padding: 10px 30px;
+        font-weight: 500;
+        position: sticky; // Make submit button stick to bottom
+        bottom: 0;
+    }
+}

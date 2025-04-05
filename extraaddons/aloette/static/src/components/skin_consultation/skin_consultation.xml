@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="aloette.SkinConsultation">
+        <div class="skin-consultation">
+            <div class="container mt-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <img src="/aloette/static/src/img/logo.png" alt="Aloette Logo" class="mb-2" style="max-width: 200px"/>
+                    </div>
+                    <div class="card-body">
+                        <form t-on-submit.prevent="onSubmit">
+                            <!-- Like About Skin -->
+                            <div class="mb-4">
+                                <label class="form-label">What are the 3 things you like about your skin?</label>
+                                <div class="form-check" t-foreach="skinAttributes" t-as="attribute" t-key="attribute.id">
+                                    <input class="form-check-input" 
+                                        type="checkbox" 
+                                        t-att-id="'like_' + attribute.id"
+                                        t-att-value="attribute.id"
+                                        t-on-change="(ev) => this.updateLikes(attribute.id, ev.target.checked)"
+                                    />
+                                    <label class="form-check-label" t-att-for="'like_' + attribute.id">
+                                        <t t-esc="attribute.name"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Improve About Skin -->
+                            <div class="mb-4">
+                                <label class="form-label">What are the 3 things you like to improve about your skin?</label>
+                                <div class="form-check" t-foreach="skinAttributes" t-as="attribute" t-key="attribute.id">
+                                    <input class="form-check-input" 
+                                        type="checkbox" 
+                                        t-att-id="'improve_' + attribute.id"
+                                        t-att-value="attribute.id"
+                                        t-on-change="(ev) => this.updateImprovements(attribute.id, ev.target.checked)"
+                                    />
+                                    <label class="form-check-label" t-att-for="'improve_' + attribute.id">
+                                        <t t-esc="attribute.name"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Vascularity -->
+                            <div class="mb-4">
+                                <label class="form-label">VASCULARITY - This skin analysis will help determine many aspects of your skin's current condition. It will allow us to better understand your skin and how we can help you achieve your personal goals.</label>
+                                <div class="form-check" t-foreach="vascularityOptions" t-as="option" t-key="option.id">
+                                    <input class="form-check-input" 
+                                        type="radio" 
+                                        name="vascularity"
+                                        t-att-id="'vascularity_' + option.id"
+                                        t-att-value="option.id"
+                                        t-on-change="() => this.updateVascularity(option.id)"
+                                    />
+                                    <label class="form-check-label" t-att-for="'vascularity_' + option.id">
+                                        <t t-esc="option.name"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Skin Texture -->
+                            <div class="mb-4">
+                                <label class="form-label">SKIN TEXTURE - This skin analysis will help determine many aspect of your skin's current condition. It will allow us to better understand your skin and how we can help you achieve your personal goals.</label>
+                                <div class="form-check" t-foreach="skinTextureOptions" t-as="option" t-key="option.id">
+                                    <input class="form-check-input" 
+                                        type="radio" 
+                                        name="skinTexture"
+                                        t-att-id="'skinTexture_' + option.id"
+                                        t-att-value="option.id"
+                                        t-on-change="() => this.updateSkinTexture(option.id)"
+                                    />
+                                    <label class="form-check-label" t-att-for="'vascularity_' + option.id">
+                                        <t t-esc="option.name"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Depth of Pigmentation -->
+                            <div class="mb-4">
+                                <label class="form-label">DEPTH OF PIGMENTATION - This skin analysis will help determine many aspect of your skin's current condition. It will allow us to better understand your skin and how we can help you achieve your personal goals.</label>
+                                <div class="form-check" t-foreach="depthOfPigmentationOptions" t-as="option" t-key="option.id">
+                                    <input class="form-check-input" 
+                                        type="radio" 
+                                        name="depthOfPigmentation"
+                                        t-att-id="'depthOfPigmentation_' + option.id"
+                                        t-att-value="option.id"
+                                        t-on-change="() => this.updatePigmentation(option.id)"
+                                    />
+                                    <label class="form-check-label" t-att-for="'vascularity_' + option.id">
+                                        <t t-esc="option.name"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Hydration Level -->
+                            <div class="mb-4">
+                                <label class="form-label">HYDRATION LEVEL - This skin analysis will help determine many aspect of your skin's current condition. It will allow us to better understand your skin and how we can help you achieve your personal goals.</label>
+                                <div class="form-check" t-foreach="hydrationLevelOptions" t-as="option" t-key="option.id">
+                                    <input class="form-check-input" 
+                                        type="radio" 
+                                        name="hydrationLevel"
+                                        t-att-id="'hydrationLevel_' + option.id"
+                                        t-att-value="option.id"
+                                        t-on-change="() => this.updateHydration(option.id)"
+                                    />
+                                    <label class="form-check-label" t-att-for="'vascularity_' + option.id">
+                                        <t t-esc="option.name"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Sebaceous Activity -->
+                            <div class="mb-4">
+                                <label class="form-label">SEBACEOUS ACTIVITY - This skin analysis will help determine many aspect of your skin's current condition. It will allow us to better understand your skin and how we can help you achieve your personal goals.</label>
+                                <div class="form-check" t-foreach="sebaceousActivityOptions" t-as="option" t-key="option.id">
+                                    <input class="form-check-input" 
+                                        type="radio" 
+                                        name="sebaceousActivity"
+                                        t-att-id="'sebaceousActivity_' + option.id"
+                                        t-att-value="option.id"
+                                        t-on-change="() => this.updateSebaceousActivity(option.id)"
+                                    />
+                                    <label class="form-check-label" t-att-for="'vascularity_' + option.id">
+                                        <t t-esc="option.name"/>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button 
+                                    type="submit" 
+                                    class="btn btn-success"
+                                >
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
