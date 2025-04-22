@@ -23,7 +23,7 @@ class ForestTreeInformation(models.Model):
     range_supervisor_id = fields.Many2one('res.partner', string='Range Supervisor')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id)
     supplier_id = fields.Many2one('res.partner', string="Supplier Name", domain=[('customer_type', '=', 'supplier')])
-    operator_id = fields.Many2one('res.users', string="Operator Name")
+    operator_id = fields.Many2one('res.users', string="Forestry Coordinator")
     tif_no = fields.Char(string="TIF No")
     tif_date = fields.Date(string="TIF Date")
     document_date = fields.Date(string="Document Date")
@@ -92,7 +92,7 @@ class ForestInformationLine(models.Model):
         return uom.id
 
     tree_id = fields.Many2one("forest.tree.line", string="Stock Number")
-    contr_tree_no = fields.Char(string="Contract Tree No", help="Contract Tree No")
+    contr_tree_no = fields.Char(string="Contractor Tree No", help="Contractor Tree No")
 
     product_id = fields.Many2one(
         "product.product", related="tree_id.product_id",

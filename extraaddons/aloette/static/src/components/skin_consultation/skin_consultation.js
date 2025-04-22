@@ -1,20 +1,20 @@
 /** @odoo-module **/
 
 import {registry} from '@web/core/registry';
-import { Component } from "@odoo/owl";
+import { Component, useState } from "@odoo/owl";
 import {useService} from "@web/core/utils/hooks";
 
 
 export class SkinConsultation extends Component {
-    // static template = 'aloette.SkinConsultation';
-    // static props = {};
+    static template = 'aloette.SkinConsultation';
+    static props = {};
 
     setup() {
         this.orm = useService('orm');
         this.notification = useService('notification');
         this.rpc = useService('rpc')
 
-        this.state = {
+        this.state = useState({
             likes: [],
             improvements: [],
             vascularity: null,
@@ -22,7 +22,7 @@ export class SkinConsultation extends Component {
             pigmentation: null,
             hydration: null,
             sebaceousActivity: null
-        };
+        });
 
         this.skinAttributes = [
             { id: 1, name: 'Texture' },
@@ -122,6 +122,16 @@ export class SkinConsultation extends Component {
         );
     }
 
+    emptyFields() {
+        this.state.likes = [];
+        this.state.improvements = [];
+        this.state.vascularity = null;
+        this.state.skinTexture = null;
+        this.state.pigmentation = null;
+        this.state.hydration = null;
+        this.state.sebaceousActivity = null;
+    }
+
 
 
     async onSubmit() {
@@ -167,6 +177,7 @@ export class SkinConsultation extends Component {
             }]);
             
             this.notification.add("Consultation submitted successfully!", { type: 'success' });
+            this.emptyFields();
             return result;
         } catch (error) {
             this.notification.add(error, { type: 'danger' });
@@ -177,3 +188,4 @@ export class SkinConsultation extends Component {
 
 SkinConsultation.template = 'aloette.SkinConsultation';
 registry.category("actions").add("aloette.SkinConsultation", SkinConsultation);
+

@@ -4,8 +4,7 @@
     'name': 'Odoo 17 Accounting Financial Reports',
     'version': '17.0.1.3',
     'category': 'Invoicing Management',
-    'description': 'Accounting Reports For Odoo 17, Accounting Financial Reports, '
-                   'Odoo 17 Financial Reports',
+    'description': 'Accounting Reports For Odoo 17, Accounting Financial Reports, ''Odoo 17 Financial Reports',
     'summary': 'Accounting Reports For Odoo 17',
     'sequence': '1',
     'author': 'Odoo Mates, Odoo SA',

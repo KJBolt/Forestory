@@ -97,7 +97,7 @@ class ForestFellingLine(models.Model):
         return uom.id
 
     tree_id = fields.Many2one("forest.tree.line", string="Stock Number")
-    contr_tree_no = fields.Char(string="Contract Tree No", help="Contract Tree No")
+    contr_tree_no = fields.Char(string="Contractor Tree No", help="Contractor Tree No")
     diameter = fields.Float(string="Diameter", related="tree_id.diameter", store=True)
     product_id = fields.Many2one(
         "product.product", related="tree_id.product_id",

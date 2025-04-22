@@ -92,6 +92,7 @@ class CrossCutLog(models.Model):
     _rec_name = 'tree_id'
 
     def _default_uom(self):
+
         uom = self.env.ref('uom.product_uom_cubic_meter', raise_if_not_found=False)
         return uom.id
 
@@ -103,7 +104,7 @@ class CrossCutLog(models.Model):
         "product.product", related="tree_id.product_id",
         string="Species", help="Product with species attribute"
     )
-    volume = fields.Float(string='Volume', required=True, digits='Volume')
+    volume = fields.Float(string='Volume', compute='_compute_total_volume', store=True, digits='Volume')
     volume_uom_id = fields.Many2one('uom.uom', string='UoM', required=True, default=_default_uom)
     logs_count = fields.Integer(string='No of Logs', required=True)
     log_line_ids = fields.One2many('cross.cut.log.line', 'log_id', string='Cross Cut Logs')
@@ -114,6 +115,12 @@ class CrossCutLog(models.Model):
     def _compute_log_line_count(self):
         for record in self:
             record.log_line_count = len(record.log_line_ids)
+
+    # The volume in cross cut now reflects the total volume in log line
+    @api.depends('log_line_ids.quantity')
+    def _compute_total_volume(self):
+        for record in self:
+            record.volume = sum(record.log_line_ids.mapped('quantity'))
 
     # @api.depends('log_line_ids', 'tree_id')
     # def _compute_remaining_length(self):
@@ -201,7 +208,7 @@ class CrossCutLogDetails(models.Model):
     product_id = fields.Many2one("product.product", related="tree_id.product_id", string="Product", )
     name = fields.Char(
         string="Cross Cut Log Number", help="Cross Cut Log Number", required=True, default=lambda self: _("New"),
-                       tracking=True, readonly=True
+        tracking=True, readonly=True
     )
     volume_uom_id = fields.Many2one('uom.uom', string='UoM', default=_default_uom)
     defect_id = fields.Many2one(

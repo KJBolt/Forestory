@@ -15,6 +15,10 @@
     "website": "https://www.schoolofthought.com",
     "depends": ['sot_stock_forestry'],
     "data": [
+        'reports/purchase_rqf_report.xml',
+        'reports/purchase_rqf_template.xml',
+        'reports/purchase_order_report.xml',
+        'reports/purchase_order_template.xml',
         'views/purchase_views.xml',
     ],
     "qweb": [],

@@ -64,7 +64,7 @@
                     </group>
 
                     <notebook>
-                        <page name="tree_details" string="Tree Details">
+                        <page name="tree_details" string="Log Details">
                             <field name="log_line_ids" readonly="state != 'draft'">
                                 <tree string="Log Lines" create="false" editable="bottom">
                                     <field name="log_id" column_invisible="1"/>

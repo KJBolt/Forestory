@@ -1,4 +1,7 @@
 from odoo import models, fields, api
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class PurchaseOrder(models.Model):
@@ -16,6 +19,7 @@ class PurchaseOrder(models.Model):
         values['waybill_id'] = self.waybill_id.id
         values['is_forest_order'] = self.is_forest_order
         return values
+
 
 
 class PurchaseOrderLine(models.Model):
@@ -54,3 +58,5 @@ class PurchaseOrderLine(models.Model):
         values['remarks'] = self.remarks
 
         return values
+
+    
