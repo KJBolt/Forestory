@@ -4,7 +4,7 @@
     'category': 'mrp',
     'summary': 'Manufacturing Dashboard',
     "description": """
-      Manufacturing Dashboard
+        Manufacturing Dashboard
     """,
     'author': 'School of Thought',
     'website': '',

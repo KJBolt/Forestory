@@ -20,6 +20,7 @@
         'views/mrp_batch_views.xml',
         'views/sale_order_views.xml',
         'views/mrp_menus.xml',
+        'views/mrp_contract.xml',
 
         'data/ir_sequence.xml',
     ],
