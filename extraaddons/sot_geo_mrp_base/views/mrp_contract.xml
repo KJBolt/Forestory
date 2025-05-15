@@ -10,6 +10,16 @@
         <field name="perm_unlink" eval="True"/>
     </record>
 
+    <record id="access_mrp_markings" model="ir.model.access">
+        <field name="name">Markings</field>
+        <field name="model_id" ref="model_mrp_markings"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
     <record id="view_mrp_contract_form" model="ir.ui.view">
         <field name="name">mrp.contract.form</field>
         <field name="model">mrp.contract</field>
@@ -38,9 +48,48 @@
                         <group>
                             <field name="representative"/>
                             <field name="price"/>
+                            <field name="marking_ids" widget="many2many_tags" options="{'color': 2}" />
                             <field name="specification_no"/>
                         </group>
                     </group>
+
+                    <notebook>
+                        <!-- Details Tab -->
+                        <page name="details" string="Details">
+                            <group string="Select Products">
+                                <field name="products" />
+                            </group>
+                        </page>
+
+                        <!-- Destination Tab -->
+                        <page name="destination" string="Destination">
+                            <group>
+                                <group>
+                                    <field name="address_line1"/>
+                                    <field name="address_line2"/>
+                                    <field name="country"/>
+                                </group>
+                                <group>
+                                    <field name="city"/>
+                                    <field name="postal_code"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Payment Tab -->
+                        <page name="payment" string="Payment">
+                            <group>
+                                <group>
+                                    <field name="date_of_payment"/>
+                                    <field name="mode_of_payment"/>
+                                </group>
+                                <group>
+                                    <field name="amount"/>
+                                    <field name="terms_of_payment"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
